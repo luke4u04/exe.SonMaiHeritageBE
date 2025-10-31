@@ -1,0 +1,75 @@
+# Spring Boot Logging Configuration
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.ecoomerce.sportscenter: DEBUG
+
+server:
+  port: 8081
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:mysql://sonmaiheritage.c9owsoc6eoa9.ap-southeast-2.rds.amazonaws.com:3306/sonmaiheritage?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true
+    username: admin
+    password: pIsTZ3F07r7y4h1wYEN4
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: SonMaiApp
+  sql:
+    init:
+      encoding: UTF-8
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        connection:
+          characterEncoding: utf8
+          useUnicode: true
+        globally_quoted_identifiers: true
+        globally_quoted_identifiers_skip_column_definitions: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+
+
+# Mock Payment Configuration
+payment:
+  mock:
+    enabled: true
+
+# AWS S3 Configuration
+aws:
+  s3:
+    bucket-name: sonmaiheritage-images
+    region: ap-southeast-2
+    access-key: YOUR_AWS_ACCESS_KEY
+    secret-key: YOUR_AWS_SECRET_KEY
+
+# PayOS Configuration
+payos:
+  client-id: 57219a7a-abc6-4f97-bcb4-5a18c387a7e1
+  api-key: f408ed96-fc2d-41c4-94dd-1405f69cf245
+  checksum-key: 18338cd71ba71c4d4dd3884c98440b12fe7944aa18b521c7f09d6fc5d3259f2c
+  return-url: http://localhost:8081/api/checkout/payos/return
+  cancel-url: http://localhost:4200/checkout
+  webhook-url: http://localhost:8081/api/checkout/payos/webhook
